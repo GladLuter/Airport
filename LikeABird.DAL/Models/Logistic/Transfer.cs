@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.Models.Logistic {
-    class Transfer {
+    public class Transfer {
+        public int Id { get; set; }
         public Service Service { get; set; }
         public PointsRange PointsRange { get; set; }
     }

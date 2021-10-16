@@ -1,5 +1,4 @@
-﻿using LikeABird.DAL.Interfaces;
-using LikeABird.DAL.Models.Resource;
+﻿using LikeABird.DAL.Models.Resource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +11,6 @@ namespace LikeABird.DAL.Models.Logistic {
         public User User { get; set; }
         public Transport Transport { get; set; }
         public Seat Seat { get; set; }
+        public Transfer Transfer { get; set; }
     }
 }

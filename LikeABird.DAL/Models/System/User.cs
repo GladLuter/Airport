@@ -12,6 +12,5 @@ namespace LikeABird.DAL.Models {
         public string Phone { get; set; }
         public string MainEmail { get; set; }
         public Role UserRole { get; set; }
-        public int Money { get; set; }
     }
 }

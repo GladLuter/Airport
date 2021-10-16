@@ -9,7 +9,7 @@ namespace LikeABird.DAL.Models.Earnings {
         Amount,
         Percent
     }
-    class Discount {
+    public class Discount {
         public Service Service { get; set; }
         public Role UserRole { get; set; }
         public DiscountType Type { get; set; }
