@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace LikeABird.DAL.Interfaces {
    
     interface ITransportPassenger {
-        public Seat[] Seat { get; set; }
+        public Seat[]? Seat { get; set; }
     }
 }

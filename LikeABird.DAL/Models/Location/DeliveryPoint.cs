@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.Models.Location {
-    public class DeliveryPoint {
+    public class DeliveryPoint : BaseModel {
         public Country Country { get; set; }
         public string City { get; set; }
     }
