@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LikeABird.BLL\LikeABird.BLL.csproj" />
     <ProjectReference Include="..\LikeABird.DAL\LikeABird.DAL.csproj" />
   </ItemGroup>
 
