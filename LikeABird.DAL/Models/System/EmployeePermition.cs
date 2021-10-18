@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.Models.System {
-    class EmployeePermitions {
+    public class EmployeePermition : BaseModel {
         public Role Role { get; set; }
         public bool EditLocation { get; set; }
         public bool EditTransport { get; set; }

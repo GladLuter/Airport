@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LikeABird.DAL.Interfaces {
     interface ITransportModel {
         public string Name { get; set; }
-        public short Number { get; set; }
+        public string Number { get; set; }
         public long Range { get; set; }
         public long Speed { get; set; }
     }

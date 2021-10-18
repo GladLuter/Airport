@@ -1,4 +1,5 @@
 ﻿using LikeABird.DAL.Interfaces;
+using LikeABird.DAL.Models.Logistic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,11 @@ namespace LikeABird.DAL.Models.Earnings {
         Kitchen,
         DutyFree
     }
-    public class Service {
-        public int Id { get; set; }
+    public class Service : BaseModel {
         public string Name { get; set; }
         public ServiceType Type { get; set; }
-
+        public virtual ICollection<Price> Prices { get; set; }
+        public virtual ICollection<Discount> Discounts { get; set; }
+        public virtual ICollection<Transfer> Transfers { get; set; }
     }
 }
