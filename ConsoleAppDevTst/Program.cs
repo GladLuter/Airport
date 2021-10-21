@@ -22,7 +22,7 @@ namespace ConsoleAppDevTst {
             //IServiceCollection services;
             var mapperConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new DAL_to_BLL());
+                mc.AddProfile(new DAL_to_ALL());
             });
 
             // only during development, validate your mappings; remove it before release
@@ -30,6 +30,8 @@ namespace ConsoleAppDevTst {
             var mapper = mapperConfig.CreateMapper();
 
             var User = db.Users.FirstOrDefaultAsync<User>(u => u.Id == 1).Result;
+
+            //AutoMapper.Mapper.Equals
 
             Console.WriteLine($"User - {User.LastName}");
             var BL_User = mapper.Map<BL_User>(User);

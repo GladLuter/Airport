@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.DAL", "..\LikeABird.DAL\LikeABird.DAL.csproj", "{AC03A3CF-F94F-4A82-9AFC-F18BBDBD90C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.DAL.MSSQL", "..\LikeABird.DAL\LikeABird.DAL.MSSQL.csproj", "{AC03A3CF-F94F-4A82-9AFC-F18BBDBD90C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.BLL", "..\LikeABird.BLL\LikeABird.BLL.csproj", "{5C582A83-6A46-4E3E-B0CE-7FC10A5FF352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.ALL", "..\LikeABird.ALL\LikeABird.ALL.csproj", "{5C582A83-6A46-4E3E-B0CE-7FC10A5FF352}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.Tests", "..\LikeABird.Tests\LikeABird.Tests.csproj", "{151BF362-3540-424E-9E41-36D261CBE48D}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.WebAPI", "..\Like
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LikeABird.UI", "..\LikeABird.UI\LikeABird.UI.csproj", "{17E9A28E-468D-4216-91C2-4180C4F7D599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppDevTst", "..\ConsoleAppDevTst\ConsoleAppDevTst.csproj", "{1E2B461C-7CA1-4D9A-B2F9-3A1BC12A0042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppDevTst", "..\ConsoleAppDevTst\ConsoleAppDevTst.csproj", "{1E2B461C-7CA1-4D9A-B2F9-3A1BC12A0042}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

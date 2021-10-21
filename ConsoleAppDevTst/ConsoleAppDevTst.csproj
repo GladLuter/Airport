@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LikeABird.BLL\LikeABird.BLL.csproj" />
-    <ProjectReference Include="..\LikeABird.DAL\LikeABird.DAL.csproj" />
+    <ProjectReference Include="..\LikeABird.BLL\LikeABird.ALL.csproj" />
+    <ProjectReference Include="..\LikeABird.DAL\LikeABird.DAL.MSSQL.csproj" />
   </ItemGroup>
 
 </Project>

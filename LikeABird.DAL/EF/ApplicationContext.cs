@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using LikeABird.DAL.EF.Configurations;
 using GameStore.DAL.Interfaces;
+using LikeABird.DAL.EF.Properties;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LikeABird.DAL.EF {
     public class ApplicationContext : DbContext, IDataContext {
@@ -52,7 +54,8 @@ namespace LikeABird.DAL.EF {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer("Data Source=R4489;Initial Catalog=LikeABird;Integrated Security=True");
+            //var ConnctionInfo = MSSQL.GetMSSQL();
+            //optionsBuilder.UseSqlServer(ConnctionInfo.ConnectionStrings);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -70,6 +73,11 @@ namespace LikeABird.DAL.EF {
             modelBuilder.ApplyConfiguration(new ConfigTransfer());
             modelBuilder.ApplyConfiguration(new ConfigUser());
             modelBuilder.ApplyConfiguration(new ConfigUserOperation());
+        }
+        public static void AddDbContext(IServiceCollection services) {
+            var ConnctionInfo = MSSQL.GetMSSQL();
+            services.AddDbContext<ApplicationContext>(options =>
+            options.UseSqlServer(ConnctionInfo.ConnectionStrings));
         }
     }
 }
