@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LikeABird.WebAPI.Injection {
+namespace LikeABird.ALL.Injection {
     public class InjectionResolver {
         public static void ConfigurateInjections(IServiceCollection service) {
 
             DAL_to_ALL.AddDbContext(service);
             DAL_to_ALL.AddMapper(service);
 
-            service.AddScoped<BL_User>();
+            //service.AddScoped<BL_User>();
         }
     }
 }

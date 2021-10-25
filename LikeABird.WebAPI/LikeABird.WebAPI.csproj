@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LikeABird.BLL\LikeABird.ALL.csproj" />
+    <ProjectReference Include="..\LikeABird.ALL\LikeABird.ALL.csproj" />
   </ItemGroup>
 
 </Project>

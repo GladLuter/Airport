@@ -1,17 +1,19 @@
-﻿using LikeABird.DAL.Models.Resource;
+﻿using LikeABird.DAL.Interfaces;
+using LikeABird.DAL.Models.Resource;
 using LikeABird.DAL.Models.System;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.Models.Logistic {
-    public class Ticket : BaseModel {
+    public class Ticket : BaseModel<Ticket> {
         public User User { get; set; }
-        public Transport Transport { get; set; }
+        public Transport<Airplane> Transport { get; set; }
         [NotMapped]
         public Seat? Seat { get; set; }
         private string SeatJson {
@@ -24,5 +26,8 @@ namespace LikeABird.DAL.Models.Logistic {
             }           
         }
         public Transfer Transfer { get; set; }
+        public Ticket(IDataContext incDb) : base(incDb) {
+            CurrentObject = this;
+        }
     }
 }

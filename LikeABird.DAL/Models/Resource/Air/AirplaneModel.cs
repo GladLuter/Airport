@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.Models.Resource {
     
-    public class AirplaneModel : BaseModel, ITransportModel, ITransportCargo, ITransportPassenger {
+    public class AirplaneModel : BaseModel<AirplaneModel>, ITransportModel, ITransportCargo, ITransportPassenger {
         public string Name { get; set; }
         public string Number { get; set; }     
         public long Range { get; set; }
@@ -32,6 +33,8 @@ namespace LikeABird.DAL.Models.Resource {
         public short Qty_WC { get; set; }
         //public float Wingspan { get; set; }
         public virtual ICollection<Airplane> Airplanes { get; set; }
-
+        public AirplaneModel(IDataContext incDb) : base(incDb) {
+            CurrentObject = this;
+        }
     }
 }

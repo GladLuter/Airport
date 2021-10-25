@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LikeABird.DAL.EF.Properties {
-    public class MSSQL {
+    public class DB {
         public string ConnectionStrings { get; set; }
         private static string GetConfigPath() {
-            string FilePath = Directory.GetCurrentDirectory() + "\\MSSQL.json";
+            string FilePath = Directory.GetCurrentDirectory() + "\\DB.json";
             return FilePath;
         }
         private static async Task<string> GetConfigAsync() {
             var dataStr = await File.ReadAllTextAsync(GetConfigPath());
             return dataStr;
         }
-        public static MSSQL GetMSSQL() {
-            return JsonConvert.DeserializeObject<MSSQL>(GetConfigAsync().Result);
+        public static DB GetDBInfo() {
+            return JsonConvert.DeserializeObject<DB>(GetConfigAsync().Result);
         }
     }
 }

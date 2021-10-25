@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="EF\Properties\MSSQL.json" />
+    <None Remove="EF\Properties\DB.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="EF\Properties\MSSQL.json">
+    <Content Include="EF\Properties\DB.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LikeABird.ALL\LikeABird.ALL.csproj" />
+    <ProjectReference Include="..\LikeABird.IIL\LikeABird.IIL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

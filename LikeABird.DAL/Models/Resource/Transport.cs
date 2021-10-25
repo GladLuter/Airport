@@ -28,7 +28,7 @@ namespace LikeABird.DAL.Models.Resource {
         public int Number { get; set; }
         public SeatsLetters Letter { get; set; }
     }
-    public abstract class Transport : BaseModel {
+    public abstract class Transport<T> : BaseModel<T> where T: BaseModel<T> {
         static public Seat[] GetSeats(int Lines, int Colums){
             Seat[] Seats = new Seat[Lines * Colums];
             int CurrNum = 0;
@@ -42,5 +42,6 @@ namespace LikeABird.DAL.Models.Resource {
             return Seats;
         }
         public virtual ICollection<Ticket> Tickets { get; set; }
+        protected Transport(IDataContext incDb) : base(incDb) { }
     }
 }

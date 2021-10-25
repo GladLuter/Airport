@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace GameStore.DAL.Interfaces
+namespace LikeABird.DAL.Interfaces
 {
     public interface IDataContext: IDisposable
     {

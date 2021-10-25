@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LikeABird.DAL.EF {
     class DataInitialization {
-        public static void Initialize(ApplicationContext context) {
+        public static void Initialize(DataContext context) {
             #region Role
             var RoleAdmin = new Role() { Employee = true, Name = "Admin"};
             var RoleClient = new Role() { Employee = false, Name = "Client" };
@@ -174,7 +174,7 @@ namespace LikeABird.DAL.EF {
             context.Discounts.AddRangeAsync(new Discount[] { DiscountVIP_fly, DiscountVIP_Dinner, DiscountVIP_Bag, DiscountEmp_fly, DiscountEmp_Dinner, DiscountEmp_Water, DiscountEmp_Bag });
         }
 
-        private static Airplane[] AddAirplans(ApplicationContext context, int Qty, AirplaneModel Model) {
+        private static Airplane[] AddAirplans(DataContext context, int Qty, AirplaneModel Model) {
             Airplane[] Airplans = new Airplane[Qty];
             for (int i = 0; i < Airplans.Length; i++) {
                 Airplans[i] = new Airplane() { DateCreated = DateTime.Today, Model = Model, SerialNumber = Guid.NewGuid().ToString() };

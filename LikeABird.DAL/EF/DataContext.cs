@@ -10,12 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LikeABird.DAL.EF.Configurations;
-using GameStore.DAL.Interfaces;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.EF.Properties;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LikeABird.DAL.EF {
-    public class ApplicationContext : DbContext, IDataContext {
+    public class DataContext : DbContext, IDataContext {
         
         #region System
         public DbSet<User> Users { get; set; }
@@ -47,14 +47,14 @@ namespace LikeABird.DAL.EF {
         public DbSet<UserOperation> UserOperations { get; set; }
         #endregion
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {
+        public DataContext(DbContextOptions<DataContext> options) : base(options) {
             if (Database.EnsureCreated()) {
                 DataInitialization.Initialize(this);
             }             
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            //var ConnctionInfo = MSSQL.GetMSSQL();
+            //var ConnctionInfo = DB.GetDBInfo();
             //optionsBuilder.UseSqlServer(ConnctionInfo.ConnectionStrings);
         }
 
@@ -74,9 +74,9 @@ namespace LikeABird.DAL.EF {
             modelBuilder.ApplyConfiguration(new ConfigUser());
             modelBuilder.ApplyConfiguration(new ConfigUserOperation());
         }
-        public static void AddDbContext(IServiceCollection services) {
-            var ConnctionInfo = MSSQL.GetMSSQL();
-            services.AddDbContext<ApplicationContext>(options =>
+        public static void AddDbContext<T>(T services) where T: IServiceCollection {
+            var ConnctionInfo = DB.GetDBInfo();
+            services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(ConnctionInfo.ConnectionStrings));
         }
     }
