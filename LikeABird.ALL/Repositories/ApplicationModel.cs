@@ -7,20 +7,21 @@ using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using LikeABird.IIL;
 using System.Linq.Expressions;
+using System.Text.Json.Serialization;
 
 namespace LikeABird.ALL.Repositories {
-    public abstract class ApplicationModel<DO, CurObj> :IDataObjectMethods<CurObj> 
-        where DO: IDataObject<DO>
-        where CurObj : ApplicationModel<DO, CurObj> 
-        {
-        private IMapper DataMapper;//{ get; set; }
+    public abstract class ApplicationModel<DO, CurObj> : IDataObjectMethods<CurObj>
+        where DO : IDataObject<DO>
+        where CurObj : ApplicationModel<DO, CurObj> {
+        protected IMapper DataMapper;//{ get; set; }
         protected ApplicationModel(IMapper CurMapper) {
             DataMapper = CurMapper;
         }
         [Key]
         public int Id { get; set; }
-        private IDataObject<DO> DataObject;// { get; set; }
-        
+        [JsonIgnore]
+        public IDataObject<DO> DataObject { get; set; }
+
         protected virtual void MapItBack(CurObj AnotherObject = null) {
             DataMapper.Map<CurObj, DO>(AnotherObject ?? GetThis(), DataObject.CurrentObject);
         }
@@ -30,27 +31,40 @@ namespace LikeABird.ALL.Repositories {
             return DataObject.CurrentObject.DeleteAsync(id);
         }
         public virtual Task InsertAsync(CurObj obj) {
-            var AnotherObject_DO = DataMapper.Map<CurObj, DO>(obj);
+            var AnotherObject_DO = DataObject.CurrentObject.GetNewObj();
+            DataMapper.Map<CurObj, DO>(obj, AnotherObject_DO);
             return DataObject.CurrentObject.InsertAsync(AnotherObject_DO);
         }
         public virtual bool Save() {
             MapItBack();
             return DataObject.CurrentObject.Save();
         }
-        public virtual Task<CurObj> SelectByIdAsync(int? id){
+        public virtual Task<CurObj> SelectByIdAsync(int? id) {
             var Task_DO = DataObject.CurrentObject.SelectByIdAsync(id);
             return Task.Factory.StartNew<CurObj>(() => SelectByIdAsync(Task_DO));
         }
         private CurObj SelectByIdAsync(Task<DO> task_) {
-            return DataMapper.Map<DO, CurObj>(task_.Result);
+            CurObj Answer = GetNewObj();
+            DataMapper.Map<DO, CurObj>(task_.Result, Answer);
+            return Answer;
         }
+        //public static CurObj SelectByIdAsync(int? id, IDataObject<DO> DataObj) {
+
+        //}
         //public abstract Task<CurObj> SelectByIdAsync(int id, params Expression<Func<CurObj, object>>[] includes);
-        public virtual Task UpdateAsync(CurObj obj) {
-            var AnotherObject_DO = DataMapper.Map<CurObj, DO>(obj);
+        public virtual Task UpdateAsync(CurObj obj) {          
+            var AnotherObject_DO = DataObject.CurrentObject.GetNewObj();
+            DataMapper.Map<CurObj, DO>(obj, AnotherObject_DO);
             return AnotherObject_DO.UpdateAsync(AnotherObject_DO);
         }
 
-        
+        public abstract CurObj GetNewObj(CurObj obj);
+
+        public CurObj GetNewObj() {
+            return GetNewObj(null);
+        }
+
+
 
         //protected ApplicationModel(T incDB) {
         //    DB = incDB;

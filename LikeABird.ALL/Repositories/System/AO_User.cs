@@ -20,6 +20,14 @@ namespace LikeABird.ALL.Repositories.System {
         //public AO_Role UserRole { get; set; }
         public string Password { get; set; }
 
+        public override AO_User<DO> GetNewObj(AO_User<DO> obj) {
+            if (obj is null) {
+                return new(DataMapper);
+            } else {
+                return new(obj.DataMapper);
+            }
+        }
+
         protected override AO_User<DO> GetThis() {
             return this;
         }

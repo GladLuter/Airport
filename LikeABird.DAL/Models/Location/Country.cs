@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,14 @@ namespace LikeABird.DAL.Models.Location {
         public virtual ICollection<DeliveryPoint> DeliveryPoints { get; set; }
         public Country(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public Country() : this(null) {}
+        public override Country GetNewObj(Country obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

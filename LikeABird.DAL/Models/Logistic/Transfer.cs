@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.Models.Earnings;
 using LikeABird.DAL.Models.Location;
 using System;
@@ -17,6 +18,14 @@ namespace LikeABird.DAL.Models.Logistic {
         public virtual ICollection<UserOperation> UserOperations { get; set; }
         public Transfer(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public Transfer() : this(null) { }
+        public override Transfer GetNewObj(Transfer obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

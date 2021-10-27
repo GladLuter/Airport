@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LikeABird.ALL.Interfaces;
 using AutoMapper;
 
 namespace LikeABird.ALL.Mapper {
@@ -29,11 +28,12 @@ namespace LikeABird.ALL.Mapper {
                 .ForMember(dal => dal.UserOperations, m => m.Ignore())
                 .ForMember(dal => dal.Tickets, m => m.Ignore());
             CreateMap<User, AO_User<User>>().MaxDepth(1)
-                //.BeforeMap((dal, all) => all.DataObject = dal.CurrentObject);
-                .ForMember(ao => ao.DataObject, m => m.MapFrom(dal => dal.CurrentObject));
+                //.AfterMap((dal, all) => all.DataObject = dal.CurrentObject);
+                .ForMember(ao => ao.DataObject, m => m.MapFrom(dal => dal.CurrentObject))
+                ;//.ConstructUsing(tt => new AO_User<User>());
             //.ForMember(ao => ao.DataObject, GetIt());
-            CreateMap<AO_Role, Role>().MaxDepth(1).ForMember(dto => dto.Discounts, tt => tt.Ignore()).ReverseMap();
-            CreateMap<AO_EmployeePermition, EmployeePermition>().MaxDepth(1).ReverseMap();
+            CreateMap<AO_Role<Role>, Role>().MaxDepth(1).ForMember(dto => dto.Discounts, tt => tt.Ignore()).ReverseMap();
+            CreateMap<AO_EmployeePermition<EmployeePermition>, EmployeePermition>().MaxDepth(1).ReverseMap();
         }
         public static void AddMapper(IServiceCollection services) {
             services.AddAutoMapper(c => c.AddProfile<DAL_to_ALL>(), typeof(DAL_to_ALL));

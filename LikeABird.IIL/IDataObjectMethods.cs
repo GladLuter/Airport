@@ -15,6 +15,8 @@ namespace LikeABird.IIL {
         public abstract Task UpdateAsync(T obj);
 
         public abstract Task DeleteAsync(int? id);
+        public abstract T GetNewObj(T obj);
+        public abstract T GetNewObj();
 
         //public abstract Task<T> SelectByIdAsync(int id, params Expression<Func<T, object>>[] includes);
     }

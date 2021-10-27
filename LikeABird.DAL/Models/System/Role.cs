@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.Models.Earnings;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,14 @@ namespace LikeABird.DAL.Models.System {
         public virtual ICollection<EmployeePermition> EmployeePermitions { get; set; }
         public Role(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public Role() : this(null) { }
+        public override Role GetNewObj(Role obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

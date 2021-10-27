@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.Models.Logistic;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,14 @@ namespace LikeABird.DAL.Models.Location {
         public PointsRange(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
         }
+        public PointsRange() : this(null) { }
         //public virtual ICollection<Transfer> Transfers { get; set; }
+        public override PointsRange GetNewObj(PointsRange obj = null) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
+        }
     }
 }

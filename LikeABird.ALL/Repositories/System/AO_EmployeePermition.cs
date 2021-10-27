@@ -19,6 +19,14 @@ namespace LikeABird.ALL.Repositories.System {
         public bool EditPrice { get; set; }
         public bool EditRole { get; set; }
 
+        public override AO_EmployeePermition<DO> GetNewObj(AO_EmployeePermition<DO> obj) {
+            if (obj is null) {
+                return new(DataMapper);
+            } else {
+                return new(obj.DataMapper);
+            }
+        }
+
         protected override AO_EmployeePermition<DO> GetThis() {
             return this;
         }

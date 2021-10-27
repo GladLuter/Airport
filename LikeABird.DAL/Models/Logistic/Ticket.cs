@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.Models.Resource;
 using LikeABird.DAL.Models.System;
 using Newtonsoft.Json;
@@ -28,6 +29,14 @@ namespace LikeABird.DAL.Models.Logistic {
         public Transfer Transfer { get; set; }
         public Ticket(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public Ticket() : this(null) { }
+        public override Ticket GetNewObj(Ticket obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

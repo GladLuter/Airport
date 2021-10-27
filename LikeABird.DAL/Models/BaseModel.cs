@@ -9,6 +9,7 @@ using LikeABird.DAL.Interfaces;
 using LikeABird.IIL;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using LikeABird.DAL.EF;
 
 namespace LikeABird.DAL.Models {
     public abstract class BaseModel<T> : IDataObject<T> where T : BaseModel<T> {
@@ -18,7 +19,7 @@ namespace LikeABird.DAL.Models {
         public virtual T CurrentObject { get; set; }
         [NotMapped]
         protected readonly IDataContext Db;
-        protected BaseModel(IDataContext incDb){
+        protected BaseModel(IDataContext incDb) {
             Db = incDb;
         }
 
@@ -28,7 +29,8 @@ namespace LikeABird.DAL.Models {
             return task.IsCompleted && !task.IsFaulted;
         }
         public virtual async Task<T> SelectByIdAsync(int? id) {
-            return await Db.Set<T>().FindAsync(id);
+            var result = await Db.Set<T>().FindAsync(id);
+            return result;
         }
         public virtual async Task InsertAsync(T obj) {
             await Db.Set<T>().AddAsync(obj);
@@ -40,6 +42,12 @@ namespace LikeABird.DAL.Models {
             T forDelete = await SelectByIdAsync(id);
             if (forDelete != null)
                 Db.Set<T>().Remove(forDelete);
+        }
+
+        public abstract T GetNewObj(T obj);
+
+        public T GetNewObj() {
+            return GetNewObj(null);
         }
         //public abstract Task<T> SelectByIdAsync(int id, params Expression<Func<T, object>>[] includes);
     }

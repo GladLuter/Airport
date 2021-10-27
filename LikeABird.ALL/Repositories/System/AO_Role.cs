@@ -14,6 +14,14 @@ namespace LikeABird.ALL.Repositories.System {
         public string Name { get; set; }
         public bool Employee { get; set; }
 
+        public override AO_Role<DO> GetNewObj(AO_Role<DO> obj) {
+            if (obj is null) {
+                return new(DataMapper);
+            } else {
+                return new(obj.DataMapper);
+            }
+        }
+
         protected override AO_Role<DO> GetThis() {
             return this;
         }

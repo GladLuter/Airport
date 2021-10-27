@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,14 @@ namespace LikeABird.DAL.Models.Earnings {
         public double Amount { get; set; }
         public Price(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public Price() : this(null) { }
+        public override Price GetNewObj(Price obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

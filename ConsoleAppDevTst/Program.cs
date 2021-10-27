@@ -17,6 +17,7 @@ namespace ConsoleAppDevTst {
             var DBContext = new DbContextOptions<DataContext>();
 
             using var db = new DataContext(DBContext);
+            db.
             db.SaveChanges();
             Console.WriteLine("DB created");
 
@@ -35,18 +36,18 @@ namespace ConsoleAppDevTst {
             //AutoMapper.Mapper.Equals
 
             Console.WriteLine($"User - {User.LastName}");
-            AO_User AO_User_ = new AO_User();
-            mapper.Map<User, AO_User>(User, AO_User_);
-            mapper.Map<AO_User, User>(AO_User_, User);
-            Console.WriteLine($"AO_User - {AO_User_.LastName}");
-            Console.WriteLine($"Change BL_User and relust is:");
-            AO_User_.LastName += "1";
-            Console.WriteLine($"AO_User - {AO_User_.LastName}");
-            Console.WriteLine($"User - {User.LastName}");
-            //Console.WriteLine($"Mapping back BL_User to User and relust is:");
-            //User = mapper.Map<User>(AO_User);
+            //AO_User AO_User_ = new AO_User();
+            //mapper.Map<User, AO_User>(User, AO_User_);
+            //mapper.Map<AO_User, User>(AO_User_, User);
+            //Console.WriteLine($"AO_User - {AO_User_.LastName}");
+            //Console.WriteLine($"Change BL_User and relust is:");
+            //AO_User_.LastName += "1";
+            //Console.WriteLine($"AO_User - {AO_User_.LastName}");
             //Console.WriteLine($"User - {User.LastName}");
-            //db.Users.Update(User);
+            ////Console.WriteLine($"Mapping back BL_User to User and relust is:");
+            ////User = mapper.Map<User>(AO_User);
+            ////Console.WriteLine($"User - {User.LastName}");
+            ////db.Users.Update(User);
 
         }
     }

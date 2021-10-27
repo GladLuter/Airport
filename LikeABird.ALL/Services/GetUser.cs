@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LikeABird.ALL.Interfaces {
-    public interface IUnitOfWork: IDisposable {
-        Task SaveAsync();
+namespace LikeABird.ALL.Services {
+    class GetUser {
+        //public 
     }
 }

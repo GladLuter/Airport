@@ -1,4 +1,5 @@
-﻿using LikeABird.DAL.Interfaces;
+﻿using LikeABird.DAL.EF;
+using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.Models.Resource;
 using Newtonsoft.Json;
 using System;
@@ -35,6 +36,14 @@ namespace LikeABird.DAL.Models.Resource {
         public virtual ICollection<Airplane> Airplanes { get; set; }
         public AirplaneModel(IDataContext incDb) : base(incDb) {
             CurrentObject = this;
+        }
+        public AirplaneModel() : this(null) { }
+        public override AirplaneModel GetNewObj(AirplaneModel obj) {
+            if (obj is null) {
+                return new(Db);
+            } else {
+                return new(obj.Db);
+            }
         }
     }
 }

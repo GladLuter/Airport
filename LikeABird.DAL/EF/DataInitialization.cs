@@ -24,8 +24,8 @@ namespace LikeABird.DAL.EF {
             #region Users
             var UserAdmin = new User() { LastName = "Sleptsov", Name = "Evgenii", MainEmail = "Admin@mail.Mail", UserRole = RoleAdmin, Phone = "111111111", Password = "123" };
             var UserClient1 = new User() { LastName = "Pupkin", Name = "Vitaliy", MainEmail = "Client1@mail.Mail", UserRole = RoleClient, Phone = "2222", Password = "123" };
-            var UserClient2 = new User() { LastName = "Sleptsov", Name = "Evgenii", MainEmail = "Client2@mail.Mail", UserRole = RoleClient, Phone = "123123123", Password = "123" };
-            var UserClientVIP = new User() { LastName = "Sleptsov", Name = "Evgenii", MainEmail = "VIP@mail.Mail", UserRole = RoleVIP, Phone = "34234234234", Password = "123" };
+            var UserClient2 = new User() { LastName = "Titov", Name = "Ivan", MainEmail = "Client2@mail.Mail", UserRole = RoleClient, Phone = "123123123", Password = "123" };
+            var UserClientVIP = new User() { LastName = "Plushkin", Name = "Petr", MainEmail = "VIP@mail.Mail", UserRole = RoleVIP, Phone = "34234234234", Password = "123" };
             context.Users.AddRangeAsync(new User[] { UserAdmin, UserClient1, UserClient2, UserClientVIP });
             #endregion
 
@@ -39,7 +39,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 1
                 ,Range = 9400
                 ,Speed = 851
-                ,Seat = Transport.GetSeats(30, 4)
+                ,Seat = Transport<Airplane>.GetSeats(30, 4)
             };
             var AirplaneModel_Boeing767_200ER = new AirplaneModel() {
                 Name = "Boeng"
@@ -49,7 +49,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 2
                 ,Range = 12200
                 ,Speed = 900
-                ,Seat = Transport.GetSeats(24, 6)
+                ,Seat = Transport<Airplane>.GetSeats(24, 6)
             };
             var AirplaneModel_Boeing767_300 = new AirplaneModel() {
                 Name = "Boeng"
@@ -59,7 +59,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 1
                 ,Range = 9700
                 ,Speed = 700
-                ,Seat = Transport.GetSeats(28, 4)
+                ,Seat = Transport<Airplane>.GetSeats(28, 4)
             };
             var AirplaneModel_Boeing767_300ER = new AirplaneModel() {
                 Name = "Boeng"
@@ -69,7 +69,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 2
                 ,Range = 11305
                 ,Speed = 870
-                ,Seat = Transport.GetSeats(26, 6)
+                ,Seat = Transport<Airplane>.GetSeats(26, 6)
             };
             var AirplaneModel_Boeing767_300F = new AirplaneModel() {
                 Name = "Boeng"
@@ -79,7 +79,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 2
                 ,Range = 6050
                 ,Speed = 600
-                ,Seat = Transport.GetSeats(36, 6)
+                ,Seat = Transport<Airplane>.GetSeats(36, 6)
             };
             var AirplaneModel_Boeing767_400ER = new AirplaneModel() {
                 Name = "Boeng"
@@ -89,7 +89,7 @@ namespace LikeABird.DAL.EF {
                 ,Qty_WC = 4
                 ,Range = 10450
                 ,Speed = 950
-                ,Seat = Transport.GetSeats(30, 6)
+                ,Seat = Transport<Airplane>.GetSeats(30, 6)
             };
 
             context.AirplaneModels.AddRangeAsync(new AirplaneModel[] { 
@@ -172,6 +172,8 @@ namespace LikeABird.DAL.EF {
             var DiscountEmp_Bag = new Discount() { Service = ServiceBag, Type = DiscountType.Amount, Amount = 500, UserRole = RoleAdmin };
 
             context.Discounts.AddRangeAsync(new Discount[] { DiscountVIP_fly, DiscountVIP_Dinner, DiscountVIP_Bag, DiscountEmp_fly, DiscountEmp_Dinner, DiscountEmp_Water, DiscountEmp_Bag });
+
+            context.SaveChanges();
         }
 
         private static Airplane[] AddAirplans(DataContext context, int Qty, AirplaneModel Model) {
