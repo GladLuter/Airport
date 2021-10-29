@@ -43,6 +43,6 @@ namespace LikeABird.DAL.Models.Resource {
             return Seats;
         }
         public virtual ICollection<Ticket> Tickets { get; set; }
-        protected Transport(IDataContext incDb) : base(incDb) { }
+        //protected Transport(IDataContext incDb) : base(incDb) { }
     }
 }

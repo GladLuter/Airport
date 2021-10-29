@@ -9,9 +9,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using LikeABird.IIL;
 
 namespace LikeABird.DAL.Models.System {
-    public class User : BaseModel<User> {
+    public class User : BaseModel<User>, IGetRole {
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
@@ -20,17 +21,40 @@ namespace LikeABird.DAL.Models.System {
         public string Password { get; set; }
         public virtual ICollection<UserOperation> UserOperations { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
-        public User(IDataContext incDb) : base(incDb) {
+        public User() {
             CurrentObject = this;
+            SetCurRoleFromDB();
         }
-        public User() : this(null) { }
+        private async void SetCurRoleFromDB(IDataContext inDB = null) {
+            Role EmptyRole = new();
+            if (EmptyRole is null)
+                return;
 
-        public override User GetNewObj(User obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
+            int RoleId = (int)(inDB ?? Db).Entry<User>(this).Property("UserRoleId").CurrentValue;
+            if (RoleId <= 0)
+                return;
+            
+            UserRole = await EmptyRole.SelectByIdAsync(RoleId);
+
+            //if (RoleResult is not null)
+            //    UserRole = RoleResult;
+        } 
+
+        //public override User GetNewObj(User obj) {
+        //    //if (obj is null) {
+        //    //    return new();
+        //    //} else {
+        //        return new();
+        //    //}
+        //}
+        protected override void InitializeFilds(IDataContext inDB) {
+            SetCurRoleFromDB(inDB);
+        }
+
+        public Task GetRole() {
+            if (UserRole is null)
+                SetCurRoleFromDB();
+            return Task.Factory.StartNew(() => UserRole);
         }
     }
 }

@@ -13,16 +13,16 @@ namespace LikeABird.DAL.Models.Location {
         public string NameFull { get; set; }
         public string NameShort { get; set; }
         public virtual ICollection<DeliveryPoint> DeliveryPoints { get; set; }
-        public Country(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public Country() : this(null) {}
-        public override Country GetNewObj(Country obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public Country(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public Country() : this(null) {}
+        //public override Country GetNewObj(Country obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

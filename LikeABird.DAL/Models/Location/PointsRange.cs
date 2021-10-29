@@ -14,17 +14,17 @@ namespace LikeABird.DAL.Models.Location {
         public DeliveryPoint Point1 { get; set; }
         public DeliveryPoint Point2 { get; set; }
         public long Range { get; set; }
-        public PointsRange(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public PointsRange() : this(null) { }
-        //public virtual ICollection<Transfer> Transfers { get; set; }
-        public override PointsRange GetNewObj(PointsRange obj = null) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public PointsRange(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public PointsRange() : this(null) { }
+        ////public virtual ICollection<Transfer> Transfers { get; set; }
+        //public override PointsRange GetNewObj(PointsRange obj = null) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

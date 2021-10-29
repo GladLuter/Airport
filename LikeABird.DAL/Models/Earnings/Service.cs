@@ -22,16 +22,16 @@ namespace LikeABird.DAL.Models.Earnings {
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<Transfer> Transfers { get; set; }
-        public Service(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public Service() : this(null) { }
-        public override Service GetNewObj(Service obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public Service(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public Service() : this(null) { }
+        //public override Service GetNewObj(Service obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

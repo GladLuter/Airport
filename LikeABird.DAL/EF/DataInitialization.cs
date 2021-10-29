@@ -16,10 +16,12 @@ namespace LikeABird.DAL.EF {
             var RoleClient = new Role() { Employee = false, Name = "Client" };
             var RoleVIP = new Role() { Employee = false, Name = "Client VIP" };
             context.Roles.AddRangeAsync(new Role[] { RoleAdmin, RoleClient, RoleVIP });
+            context.SaveChanges();
             #endregion
 
             var PermitionAdmin = new EmployeePermition() { Role = RoleAdmin, EditLocation = true, EditLogistic = true, EditPrice = true, EditRole = true, EditService = true, EditTransport = true };
             context.EmployeePermitions.AddAsync(PermitionAdmin);
+            context.SaveChanges();
 
             #region Users
             var UserAdmin = new User() { LastName = "Sleptsov", Name = "Evgenii", MainEmail = "Admin@mail.Mail", UserRole = RoleAdmin, Phone = "111111111", Password = "123" };
@@ -27,6 +29,7 @@ namespace LikeABird.DAL.EF {
             var UserClient2 = new User() { LastName = "Titov", Name = "Ivan", MainEmail = "Client2@mail.Mail", UserRole = RoleClient, Phone = "123123123", Password = "123" };
             var UserClientVIP = new User() { LastName = "Plushkin", Name = "Petr", MainEmail = "VIP@mail.Mail", UserRole = RoleVIP, Phone = "34234234234", Password = "123" };
             context.Users.AddRangeAsync(new User[] { UserAdmin, UserClient1, UserClient2, UserClientVIP });
+            context.SaveChanges();
             #endregion
 
             #region AirplaneModel
@@ -100,6 +103,7 @@ namespace LikeABird.DAL.EF {
                 AirplaneModel_Boeing767_300F,
                 AirplaneModel_Boeing767_400ER
             });
+            context.SaveChanges();
 
             #endregion
 
@@ -114,6 +118,7 @@ namespace LikeABird.DAL.EF {
             Country CountryPL = new Country() { NameFull = "Polland", NameShort = "PL" };
             Country CountryTR = new Country() { NameFull = "Turkish", NameShort = "TR" };
             context.Countrys.AddRangeAsync(new Country[]{ CountryUA, CountryTR, CountryPL });
+            context.SaveChanges();
 
             DeliveryPoint UA_Kyiv = new DeliveryPoint() { Country = CountryUA, City = "Kyiv" };
             DeliveryPoint UA_Lviv = new DeliveryPoint() { Country = CountryUA, City = "Lviv" };
@@ -122,6 +127,7 @@ namespace LikeABird.DAL.EF {
             DeliveryPoint TR_Istanbul = new DeliveryPoint() { Country = CountryTR, City = "Istanbul" };
             DeliveryPoint TR_Antalya = new DeliveryPoint() { Country = CountryTR, City = "Antalya" };
             context.DeliveryPoints.AddRangeAsync(new DeliveryPoint[] { UA_Kyiv, UA_Lviv, PL_Warsaw, PL_Krakow, TR_Istanbul, TR_Antalya });
+            context.SaveChanges();
 
             PointsRange[] PR = new PointsRange[] {
                 new PointsRange(){Point1 = UA_Kyiv, Point2 = UA_Lviv, Range = 498},
@@ -140,6 +146,7 @@ namespace LikeABird.DAL.EF {
                 new PointsRange(){Point1 = PL_Krakow, Point2 = TR_Antalya, Range = 1709}
             };
             context.PointsRanges.AddRangeAsync(PR);
+            context.SaveChanges();
 
             var ServiceFly = new Service() { Name = "Fly to another City", Type = ServiceType.Passenger };
             var ServiceBag = new Service() { Name = "Baggage", Type = ServiceType.Cargo };
@@ -149,6 +156,7 @@ namespace LikeABird.DAL.EF {
             var ServicePerfume = new Service() { Name = "Chanel perfume", Type = ServiceType.DutyFree };
 
             context.Services.AddRangeAsync(new Service[] { ServiceFly, ServiceBag, ServiceDinner, ServiceWater, ServiceWatch, ServicePerfume });
+            context.SaveChanges();
 
             var PriceFly1 = new Price() { Service = ServiceFly, RangeStart = 0, RangeEnd = 400, Amount = 600 };
             var PriceFly2 = new Price() { Service = ServiceFly, RangeStart = 401, RangeEnd = 700, Amount = 800 };
@@ -162,6 +170,7 @@ namespace LikeABird.DAL.EF {
             var PricePerfume = new Price() { Service = ServicePerfume, Amount = 5000 };
 
             context.Prices.AddRangeAsync(new Price[] { PriceFly1, PriceFly2, PriceFly3, PriceFly4, PriceFly5, PriceBaggage, PriceDinner, PriceWater, PriceWatch, PricePerfume });
+            context.SaveChanges();
 
             var DiscountVIP_fly = new Discount() { Service = ServiceFly, Type = DiscountType.Percent, Amount = 5, UserRole = RoleVIP };
             var DiscountVIP_Dinner = new Discount() { Service = ServiceDinner, Type = DiscountType.Amount, Amount = 200, UserRole = RoleVIP };
@@ -172,7 +181,6 @@ namespace LikeABird.DAL.EF {
             var DiscountEmp_Bag = new Discount() { Service = ServiceBag, Type = DiscountType.Amount, Amount = 500, UserRole = RoleAdmin };
 
             context.Discounts.AddRangeAsync(new Discount[] { DiscountVIP_fly, DiscountVIP_Dinner, DiscountVIP_Bag, DiscountEmp_fly, DiscountEmp_Dinner, DiscountEmp_Water, DiscountEmp_Bag });
-
             context.SaveChanges();
         }
 

@@ -34,16 +34,16 @@ namespace LikeABird.DAL.Models.Resource {
         public short Qty_WC { get; set; }
         //public float Wingspan { get; set; }
         public virtual ICollection<Airplane> Airplanes { get; set; }
-        public AirplaneModel(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public AirplaneModel() : this(null) { }
-        public override AirplaneModel GetNewObj(AirplaneModel obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public AirplaneModel(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public AirplaneModel() : this(null) { }
+        //public override AirplaneModel GetNewObj(AirplaneModel obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

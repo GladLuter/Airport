@@ -14,6 +14,7 @@ namespace LikeABird.DAL.EF.Configurations {
             string KeyName = "UserRoleId";
             builder.Property<int>(KeyName);
             builder.HasOne(s => s.UserRole).WithMany(s => s.Users).HasForeignKey(KeyName).IsRequired(true);
+
         }
     }
 }

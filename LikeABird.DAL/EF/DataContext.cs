@@ -16,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace LikeABird.DAL.EF {
     public class DataContext : DbContext, IDataContext {
-        
+
         #region System
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -79,5 +79,14 @@ namespace LikeABird.DAL.EF {
             services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(ConnctionInfo.ConnectionStrings));
         }
+        //public static IDataContext GetConnection() {
+        //    //var DBContext = new DbContextOptions<DataContext>();
+        //    //DBContext.
+        //    DbContextOptionsBuilder optionsBuilder;
+        //    optionsBuilder.Options.
+
+        //    return new DataContext(DBContext);
+        //}
+        public static IDataContext DBConnection { get; set; }
     }
 }

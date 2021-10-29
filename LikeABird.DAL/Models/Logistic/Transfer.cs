@@ -16,16 +16,16 @@ namespace LikeABird.DAL.Models.Logistic {
         public PointsRange PointsRange { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
         public virtual ICollection<UserOperation> UserOperations { get; set; }
-        public Transfer(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public Transfer() : this(null) { }
-        public override Transfer GetNewObj(Transfer obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public Transfer(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public Transfer() : this(null) { }
+        //public override Transfer GetNewObj(Transfer obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

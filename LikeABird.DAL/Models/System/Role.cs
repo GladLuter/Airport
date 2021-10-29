@@ -17,16 +17,19 @@ namespace LikeABird.DAL.Models.System {
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<EmployeePermition> EmployeePermitions { get; set; }
-        public Role(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public Role() : this(null) { }
-        public override Role GetNewObj(Role obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public Role(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public override void SetCurrentDB(IDataContext incDb) {
+        //    Db = incDb;
+        //}
+        //public Role() : this(null) { }
+        //public override Role GetNewObj(Role obj) {
+        //    //if (obj is null) {
+        //    //    return new();
+        //    //} else {
+        //        return new();
+        //    //}
+        //}
     }
 }

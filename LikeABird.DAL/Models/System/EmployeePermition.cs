@@ -17,16 +17,16 @@ namespace LikeABird.DAL.Models.System {
         public bool EditService { get; set; }
         public bool EditPrice { get; set; }
         public bool EditRole { get; set; }
-        public EmployeePermition(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public EmployeePermition() : this(null) { }
-        public override EmployeePermition GetNewObj(EmployeePermition obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public EmployeePermition(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public EmployeePermition() : this(null) { }
+        //public override EmployeePermition GetNewObj(EmployeePermition obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

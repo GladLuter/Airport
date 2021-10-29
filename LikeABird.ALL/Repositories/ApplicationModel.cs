@@ -31,8 +31,7 @@ namespace LikeABird.ALL.Repositories {
             return DataObject.CurrentObject.DeleteAsync(id);
         }
         public virtual Task InsertAsync(CurObj obj) {
-            var AnotherObject_DO = DataObject.CurrentObject.GetNewObj();
-            DataMapper.Map<CurObj, DO>(obj, AnotherObject_DO);
+            var AnotherObject_DO = DataMapper.Map<CurObj, DO>(obj);
             return DataObject.CurrentObject.InsertAsync(AnotherObject_DO);
         }
         public virtual bool Save() {
@@ -53,8 +52,7 @@ namespace LikeABird.ALL.Repositories {
         //}
         //public abstract Task<CurObj> SelectByIdAsync(int id, params Expression<Func<CurObj, object>>[] includes);
         public virtual Task UpdateAsync(CurObj obj) {          
-            var AnotherObject_DO = DataObject.CurrentObject.GetNewObj();
-            DataMapper.Map<CurObj, DO>(obj, AnotherObject_DO);
+            var AnotherObject_DO = DataMapper.Map<CurObj, DO>(obj);
             return AnotherObject_DO.UpdateAsync(AnotherObject_DO);
         }
 

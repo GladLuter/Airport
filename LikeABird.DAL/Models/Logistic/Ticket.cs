@@ -27,16 +27,16 @@ namespace LikeABird.DAL.Models.Logistic {
             }           
         }
         public Transfer Transfer { get; set; }
-        public Ticket(IDataContext incDb) : base(incDb) {
-            CurrentObject = this;
-        }
-        public Ticket() : this(null) { }
-        public override Ticket GetNewObj(Ticket obj) {
-            if (obj is null) {
-                return new(Db);
-            } else {
-                return new(obj.Db);
-            }
-        }
+        //public Ticket(IDataContext incDb) : base(incDb) {
+        //    CurrentObject = this;
+        //}
+        //public Ticket() : this(null) { }
+        //public override Ticket GetNewObj(Ticket obj) {
+        //    if (obj is null) {
+        //        return new(Db);
+        //    } else {
+        //        return new(obj.Db);
+        //    }
+        //}
     }
 }

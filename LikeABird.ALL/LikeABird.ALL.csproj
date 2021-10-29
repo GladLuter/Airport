@@ -15,4 +15,8 @@
     <ProjectReference Include="..\LikeABird.IIL\LikeABird.IIL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Logistic\" />
+  </ItemGroup>
+
 </Project>

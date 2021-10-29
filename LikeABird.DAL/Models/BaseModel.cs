@@ -16,12 +16,30 @@ namespace LikeABird.DAL.Models {
         [Key]
         public int Id { get; set; }
         [NotMapped]
-        public virtual T CurrentObject { get; set; }
+        private T this_;
         [NotMapped]
-        protected readonly IDataContext Db;
-        protected BaseModel(IDataContext incDb) {
-            Db = incDb;
+        public virtual T CurrentObject {
+            get {
+                if (this_ is null)
+                    this_ = (T)this;
+                return this_;
+            }
+            set { this_ = value; }
         }
+        [NotMapped]
+        private IDataContext db;
+        [NotMapped]
+        protected IDataContext Db { 
+            get {
+                if (db is null)
+                    db = DataContext.DBConnection;
+                return db;
+            } 
+            set { db = value; } 
+        }
+        //protected BaseModel(IDataContext incDb) {
+        //    SetCurrentDB(incDb);
+        //}
 
         public virtual bool Save() {
             Task task = UpdateAsync(CurrentObject);
@@ -30,6 +48,7 @@ namespace LikeABird.DAL.Models {
         }
         public virtual async Task<T> SelectByIdAsync(int? id) {
             var result = await Db.Set<T>().FindAsync(id);
+            result.InitializeFilds(Db);
             return result;
         }
         public virtual async Task InsertAsync(T obj) {
@@ -44,11 +63,15 @@ namespace LikeABird.DAL.Models {
                 Db.Set<T>().Remove(forDelete);
         }
 
-        public abstract T GetNewObj(T obj);
+        protected virtual void InitializeFilds(IDataContext inDB) {
 
-        public T GetNewObj() {
-            return GetNewObj(null);
         }
+        //public abstract T GetNewObj(T obj);
+        ////protected abstract T GetThis();
+
+        //public T GetNewObj() {
+        //    return GetNewObj(null);
+        //}
         //public abstract Task<T> SelectByIdAsync(int id, params Expression<Func<T, object>>[] includes);
     }
 }
