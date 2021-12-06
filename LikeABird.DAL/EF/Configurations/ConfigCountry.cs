@@ -7,10 +7,12 @@ using LikeABird.DAL.Models.Location;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LikeABird.DAL.EF.Configurations {
-    class ConfigCountry : IEntityTypeConfiguration<Country> {
-        public void Configure(EntityTypeBuilder<Country> builder) {
-           
-        }
+namespace LikeABird.DAL.EF.Configurations;
+class ConfigCountry : IEntityTypeConfiguration<Country>
+{
+    public void Configure(EntityTypeBuilder<Country> builder)
+    {
+
     }
 }
+

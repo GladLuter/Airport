@@ -10,23 +10,24 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LikeABird.DAL.Models.Earnings {
-    public class UserOperation : BaseModel<UserOperation> {
-        public User User { get; set; }
-        public DateTime Date { get; set; }
-        public double Money { get; set; }
-        //public Discount Discount { get; set; }
-        public Transfer Transfer { get; set; }
-        //public UserOperation(IDataContext incDb) : base(incDb) {
-        //    CurrentObject = this;
-        //}
-        //public UserOperation() : this(null) { }
-        //public override UserOperation GetNewObj(UserOperation obj) {
-        //    if (obj is null) {
-        //        return new(Db);
-        //    } else {
-        //        return new(obj.Db);
-        //    }
-        //}
-    }
+namespace LikeABird.DAL.Models.Earnings;
+public class UserOperation : BaseModel<UserOperation>
+{
+    public User User { get; set; }
+    public DateTime Date { get; set; }
+    public double Money { get; set; }
+    //public Discount Discount { get; set; }
+    public Transfer Transfer { get; set; }
+    //public UserOperation(IDataContext incDb) : base(incDb) {
+    //    CurrentObject = this;
+    //}
+    //public UserOperation() : this(null) { }
+    //public override UserOperation GetNewObj(UserOperation obj) {
+    //    if (obj is null) {
+    //        return new(Db);
+    //    } else {
+    //        return new(obj.Db);
+    //    }
+    //}
 }
+

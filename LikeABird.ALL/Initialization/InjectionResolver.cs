@@ -9,17 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LikeABird.ALL.Initialization {
-    public class InjectionResolver {
-        public static void ConfigurateInjections(IServiceCollection service) {
-          
-            DAL_to_ALL.AddDbContext(service);
-            DAL_to_ALL.AddMapper(service);
-            service.AddScoped<IDataContext, DataContext>();
-            //service.AddScoped<AO_User<User>>(tt => tt.);
-            
+namespace LikeABird.ALL.Initialization;
+public class InjectionResolver
+{
+    public static void ConfigurateInjections(IServiceCollection service)
+    {
 
-            //service.AddScoped<BL_User>();
-        }
+        DAL_to_ALL.AddDbContext(service);
+        DAL_to_ALL.AddMapper(service);
+        service.AddScoped<IDataContext, DataContext>();
+        //service.AddScoped<AO_User<User>>(tt => tt.);
+
+
+        //service.AddScoped<BL_User>();
     }
 }
+

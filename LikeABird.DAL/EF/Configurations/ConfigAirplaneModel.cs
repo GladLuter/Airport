@@ -7,10 +7,12 @@ using LikeABird.DAL.Models.Resource;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LikeABird.DAL.EF.Configurations {
-    class ConfigAirplaneModel : IEntityTypeConfiguration<AirplaneModel> {
-        public void Configure(EntityTypeBuilder<AirplaneModel> builder) {
-            
-        }
+namespace LikeABird.DAL.EF.Configurations;
+class ConfigAirplaneModel : IEntityTypeConfiguration<AirplaneModel>
+{
+    public void Configure(EntityTypeBuilder<AirplaneModel> builder)
+    {
+
     }
 }
+

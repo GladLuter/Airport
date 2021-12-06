@@ -7,10 +7,12 @@ using LikeABird.DAL.Models.Location;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LikeABird.DAL.EF.Configurations {
-    class ConfigPointsRange : IEntityTypeConfiguration<PointsRange> {
-        public void Configure(EntityTypeBuilder<PointsRange> builder) {
-           
-        }
+namespace LikeABird.DAL.EF.Configurations;
+class ConfigPointsRange : IEntityTypeConfiguration<PointsRange>
+{
+    public void Configure(EntityTypeBuilder<PointsRange> builder)
+    {
+
     }
 }
+

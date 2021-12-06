@@ -7,10 +7,12 @@ using LikeABird.DAL.Models.System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LikeABird.DAL.EF.Configurations {
-    class ConfigRole : IEntityTypeConfiguration<Role> {
-        public void Configure(EntityTypeBuilder<Role> builder) {
-           
-        }
+namespace LikeABird.DAL.EF.Configurations;
+class ConfigRole : IEntityTypeConfiguration<Role>
+{
+    public void Configure(EntityTypeBuilder<Role> builder)
+    {
+
     }
 }
+

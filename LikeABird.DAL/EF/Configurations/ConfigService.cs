@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LikeABird.DAL.EF.Configurations {
-    class ConfigService : IEntityTypeConfiguration<Service> {
-        public void Configure(EntityTypeBuilder<Service> builder) {
+namespace LikeABird.DAL.EF.Configurations;
+class ConfigService : IEntityTypeConfiguration<Service>
+{
+    public void Configure(EntityTypeBuilder<Service> builder)
+    {
 
-        }
     }
 }
+

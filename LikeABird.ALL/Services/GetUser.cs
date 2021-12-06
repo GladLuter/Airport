@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LikeABird.ALL.Services {
-    class GetUser {
-        //public 
-    }
+namespace LikeABird.ALL.Services;
+class GetUser
+{
+    //public 
 }
+
