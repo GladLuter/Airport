@@ -19,7 +19,7 @@ class Program
         var DBContext = new DbContextOptions<DataContext>();
 
         using var db = new DataContext(DBContext);
-        db.
+        //db.
         db.SaveChanges();
         Console.WriteLine("DB created");
 

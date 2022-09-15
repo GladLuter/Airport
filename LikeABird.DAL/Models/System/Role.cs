@@ -16,6 +16,8 @@ public class Role : BaseModel<Role>
     public bool Employee { get; set; }
     public virtual ICollection<EmployeePermition> Permitions { get; set; }
     public virtual ICollection<Discount> Discounts { get; set; }
+    
+    [InverseProperty("UserRole")]
     public virtual ICollection<User> Users { get; set; }
     public virtual ICollection<EmployeePermition> EmployeePermitions { get; set; }
     //public Role(IDataContext incDb) : base(incDb) {

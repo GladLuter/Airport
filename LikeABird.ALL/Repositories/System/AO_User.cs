@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 
 namespace LikeABird.ALL.Repositories.System;
-public class AO_User<DO> : ApplicationModel<DO, AO_User<DO>> where DO : IDataObject<DO>, IGetRole
+public class AO_User<DO> : ApplicationModel<DO, AO_User<DO>> where DO : IDataObject<DO>
 {
     public AO_User(IMapper CurMapper) : base(CurMapper)
     {

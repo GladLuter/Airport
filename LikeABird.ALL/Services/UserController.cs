@@ -72,8 +72,8 @@ public class UserController : ControllerBase
         if (CurUsr?.Name == null)
             return NotFound();
 
-        Task<Role> DOroleTask = (Task<Role>)CurUsr.DataObject.CurrentObject.GetRole();
-        var DOrole = await DOroleTask;
+        var DOrole = CurUsr.DataObject.CurrentObject.UserRole;
+
         AO_Role<Role> CurRole = new(ObjMapper);
         ObjMapper.Map<Role, AO_Role<Role>>(DOrole, CurRole);
 

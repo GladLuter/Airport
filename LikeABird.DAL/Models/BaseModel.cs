@@ -10,6 +10,7 @@ using LikeABird.IIL;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using LikeABird.DAL.EF;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace LikeABird.DAL.Models;
 
@@ -47,6 +48,8 @@ public abstract class BaseModel<T> : IDataObject<T> where T : BaseModel<T>
     //    SetCurrentDB(incDb);
     //}
 
+    protected ILazyLoader LazyLoader { get; set; }
+
     public virtual bool Save()
     {
         Task task = UpdateAsync(CurrentObject);
@@ -56,7 +59,6 @@ public abstract class BaseModel<T> : IDataObject<T> where T : BaseModel<T>
     public virtual async Task<T> SelectByIdAsync(int? id)
     {
         var result = await Db.Set<T>().FindAsync(id);
-        result.InitializeFilds(Db);
         return result;
     }
     public virtual async Task InsertAsync(T obj)
@@ -74,7 +76,7 @@ public abstract class BaseModel<T> : IDataObject<T> where T : BaseModel<T>
             Db.Set<T>().Remove(forDelete);
     }
 
-    protected virtual void InitializeFilds(IDataContext inDB)
+    protected virtual void InitializeFild()
     {
 
     }

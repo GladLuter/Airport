@@ -26,16 +26,16 @@ public class DAL_to_ALL : Profile
         //|| smp.GetSetMethod(true).IsFamilyOrAssembly
         //|| smp.GetSetMethod(true).IsAbstract;
 
+        CreateMap<User, AO_User<User>>().MaxDepth(1)
+            //.AfterMap((dal, all) => all.DataObject = dal.CurrentObject);
+            .ForMember(ao => ao.DataObject, m => m.MapFrom(dal => dal.CurrentObject));
+            //.ConstructUsing(tt => new AO_User<User>());
+            //.ForMember(ao => ao.DataObject, GetIt());
         CreateMap<AO_User<User>, User>().MaxDepth(1)
             .ForMember(dal => dal.UserOperations, m => m.Ignore())
             .ForMember(dal => dal.Tickets, m => m.Ignore());
-        CreateMap<User, AO_User<User>>().MaxDepth(1)
-            //.AfterMap((dal, all) => all.DataObject = dal.CurrentObject);
-            .ForMember(ao => ao.DataObject, m => m.MapFrom(dal => dal.CurrentObject))
-            ;//.ConstructUsing(tt => new AO_User<User>());
-             //.ForMember(ao => ao.DataObject, GetIt());
-        CreateMap<AO_Role<Role>, Role>().MaxDepth(1).ForMember(dto => dto.Discounts, tt => tt.Ignore()).ReverseMap();
-        CreateMap<AO_EmployeePermition<EmployeePermition>, EmployeePermition>().MaxDepth(1).ReverseMap();
+        //CreateMap<AO_Role<Role>, Role>().MaxDepth(1).ForMember(dto => dto.Discounts, tt => tt.Ignore()).ReverseMap();
+        //CreateMap<AO_EmployeePermition<EmployeePermition>, EmployeePermition>().MaxDepth(1).ReverseMap();
     }
     public static void AddMapper(IServiceCollection services)
     {

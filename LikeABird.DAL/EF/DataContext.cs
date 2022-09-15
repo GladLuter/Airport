@@ -13,11 +13,12 @@ using LikeABird.DAL.EF.Configurations;
 using LikeABird.DAL.Interfaces;
 using LikeABird.DAL.EF.Properties;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+//using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace LikeABird.DAL.EF;
 public class DataContext : DbContext, IDataContext
 {
-
     #region System
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
@@ -54,12 +55,18 @@ public class DataContext : DbContext, IDataContext
         {
             DataInitialization.Initialize(this);
         }
+        //else
+        //{
+        //Users.Include(tt => tt.UserRole);//.LoadAsync();
+        //}
+        this.ChangeTracker.LazyLoadingEnabled = true;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //var ConnctionInfo = DB.GetDBInfo();
         //optionsBuilder.UseSqlServer(ConnctionInfo.ConnectionStrings);
+        //optionsBuilder.UseLazyLoadingProxies(false);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -77,13 +84,18 @@ public class DataContext : DbContext, IDataContext
         modelBuilder.ApplyConfiguration(new ConfigTicket());
         modelBuilder.ApplyConfiguration(new ConfigTransfer());
         modelBuilder.ApplyConfiguration(new ConfigUser());
+        //var builderUser = modelBuilder.Entity<User>();
+        //builderUser.Property(tt => tt.UserRole)
+        //    .Metadata.FieldInfo.SetValue //HasConversion(t1 => t1.Id, t2 => Roles.First(r => r.Id == t2))
+        //    .HasColumnName("UserRoleId");
         modelBuilder.ApplyConfiguration(new ConfigUserOperation());
     }
     public static void AddDbContext<T>(T services) where T : IServiceCollection
     {
         var ConnctionInfo = DB.GetDBInfo();
         services.AddDbContext<DataContext>(options =>
-        options.UseSqlServer(ConnctionInfo.ConnectionStrings));
+        options.UseSqlServer(ConnctionInfo.ConnectionStrings)
+        );
     }
     //public static IDataContext GetConnection() {
     //    //var DBContext = new DbContextOptions<DataContext>();
